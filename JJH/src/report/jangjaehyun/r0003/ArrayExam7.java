@@ -1,7 +1,5 @@
 package report.jangjaehyun.r0003;
 
-import report.parkkyounghun.r0003.ArrayExam7;
-
 public class ArrayExam7 {
 	// 자리수가 6개인 인트형 배열변수 a를 선언
 	// 총6번 반복하는 반복문에서 
