@@ -3,6 +3,8 @@ package com.test.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -72,6 +74,19 @@ public class UserServlet extends HttpServlet{
 			hm.put("class_num", class_num);
 			//html화면에서 던진 age값을 "age"라는 키로 해쉬맵에 저장
 			hm.put("age", age);
+		}else if(command.equals("SELECT")){
+			String name = req.getParameter("name");
+			System.out.println("이름 : " + name); 
+			HashMap hm = new HashMap();
+			if(name!=null && !name.equals("")){
+				hm.put("name", "%" + name + "%");
+			}
+			List<Map> userList = us.selectUser(hm);
+			String result = "";
+			for(Map m : userList){
+				result += m.toString();
+			}
+			doProcess(resq, result);
 		}
 		
 		
