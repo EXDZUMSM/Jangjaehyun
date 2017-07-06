@@ -51,9 +51,9 @@ public class UserServlet extends HttpServlet{
 			//위에서 생성한 us레퍼런스 변수를 사용해 insertUser함수를 호출하는데 파라메터값은
 			//위에서 생성하고 값을 저장한 HashMap인 hm레퍼런스 변수를 같이 던짐
 			if(us.insertUser(hm)){
-				doProcess(resq, "저장 잘 됬꾸만!!!!");
+				doProcess(resq, "저장이 잘 되었습니다.");
 			}else{
-				doProcess(resq, "값 똑바로 입력 안하냐잉~");
+				doProcess(resq, "값을 다시 입력하세요.");
 			}
 		}else if(command.equals("DELETE")){
 			String user_num = req.getParameter("user_num");
