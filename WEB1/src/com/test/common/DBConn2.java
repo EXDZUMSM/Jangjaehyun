@@ -21,6 +21,7 @@ public class DBConn2 {
 			con.close();
 			con = null;
 		}
+		System.out.println(con);
 	}
 }
 
