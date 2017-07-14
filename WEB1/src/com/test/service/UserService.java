@@ -51,7 +51,7 @@ public class UserService {
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
-			String sql = "select user_num, user_id, user_pwd, user_name, class_num from user_info";
+			String sql = "select user_num, id, pwd, name, class_num from user_info";
 			if(hm.get("name")!=null){
 				sql += " where user_name like ?";
 			}
@@ -65,6 +65,10 @@ public class UserService {
 			while(rs.next()){
 				HashMap hm1 = new HashMap();
 				hm1.put("user_name", rs.getString("user_name"));
+				hm1.put("name", rs.getString("name"));
+				hm1.put("id", rs.getString("id"));
+				hm1.put("pwd", rs.getString("pwd"));
+				hm1.put("class_num", rs.getString("class_num"));
 				userList.add(hm1);
 			}
 			return userList;

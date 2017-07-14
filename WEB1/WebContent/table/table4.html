@@ -8,29 +8,26 @@
 function clickBtn(str){
 	alert(str + "단 입니다.");
 }
-var a = 1;
-alert(a);
-a = "asdf";
-alert(a);
 
-var tableStr ="<table border='1'>";
-tableStr +="<tr>";
-for(var i=1;i<10;i++){
-	tableStr +="<tr>";
-	tableStr +="</tr>";
-	for(var j=1;j<10;j++){
-		tableStr += "<td>" + i + "X" + j + "=" + (i*j) + "</td>";
+var tableStr = "<table border='1'>";
+for(var i=1;i<=9;i++){
+	tableStr += "<tr>";
+	for(var j=1;j<=9;j++){
+		tableStr += "<td onclick='clickBtn(" + i + ")'>" + i + "X" + j + "=" + (i*j) + "</td>";
 		if(j==9){
-			tableStr += "<td><input type='button' value='버튼'onclick='clickBtn(" + i +")'/></td>;"
+			tableStr += "<td><input type='button' value='버튼' onclick='clickBtn(" + i + ")'/></td>";
 		}
-	}
-	document.write("<tr>");
+	} 
+	tableStr += "</tr>";
 }
-tableStr += "</tr>";
-tableStr += "</table>;"
+tableStr += "</table>";
 document.write(tableStr);
 </script>
 <body>
-<input>
+<textarea id="ta_result">
+</textarea>
 </body>
+<script>
+document.getElementById("ta_result").value = tableStr;
+</script>
 </html>
