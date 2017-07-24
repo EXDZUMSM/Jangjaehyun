@@ -20,10 +20,11 @@ public class BoardServlet extends HttpServlet{
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resq) throws IOException, ServletException{	
 		req.setCharacterEncoding("UTF-8");
-		//html화면에서 던진 값을 각각 String 변수로 받기 시작
+
 		String name1 = req.getParameter("name");
 		String pwd1 = req.getParameter("pass");
-		System.out.println("input html에서 던진 값 => " + name1 + pwd1);
+		String a = req.getParameter("a");
+		System.out.println(name1 + pwd1+a);
 	}
 	
 	public void dePost(HttpServletRequest req, HttpServletResponse reqs) throws IOException{
