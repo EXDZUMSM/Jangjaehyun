@@ -1,73 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<%@ include file="/common/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="com.test.common.DBConn" %>
+<%@ page import="com.test.dto.UserInfo" %>
 <script>
-function getHttpXmlObj(){
-	if(window.XMLHttpRequest){
-  		return new XMLHttpRequest();
- 	}else if(window.ActiveXObject){
-  		return new ActiveXObject("Microsoft.XMLHTTP");
- 	}
-	alert("해당 브라우져가  Ajax를 지원하지 않습니다.");
-}
-function doLogin(){
-	var idStr = "userid,userpwd,command";
-	var lengthStr = "30,100,100";
-	var typeStr = "s,s,s"
-	var params="?";
-	var ids = idStr.split(",");
-	var lengths = lengthStr.split(",");
-	var types = typeStr.split(",")
-	for(var i=0;i<ids.length;i++){
-		var maxLength = new Number(lengths[i]);
-		var typeVali = types[i];
-		var elObj =  document.getElementById(ids[i]);
-		if(!isNaN(maxLength)){
-			if(elObj.value.length>maxLength){
-				alert("제한길이를 넘었습니다. 확인해주세요");
-				elObj.value="";
-				elObj.focus();
-				return;
-			}
-		}
-		if(typeVali=="n"){
-			if(isNaN(new Number(elObj.value))){
-				alert("숫자만 입력해주세요.");
-				elObj.value="";
-				elObj.focus();
-				return;
-			}
-		}
-		params += ids[i]+"="+ elObj.value +"&";
-	}
-	var xhr = getHttpXmlObj();
-	var method = "get";
-	var url = "test.user";
-	var aSync = true;
-	xhr.onreadystatechange=function(){
-   		if (xhr.readyState==4){
-   			if(xhr.status==200){
-	   			var result = decodeURIComponent(xhr.responseText);
-	   			alert(result);
-   			}else{
-   				document.getElementById("bd_div").innerHTML += xhr.responseText;
-   			}
-        }
-    }
-   	xhr.open(method, url+params, aSync);
-   	if(method=="post"){
-   		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-   	}
-   	xhr.send();
+var setObj;
+var loopCnt = 0;
+function doLogout(){
+	location.href="<%=rootPath%>/user/login_ok.jsp";
 }
 </script>
 <body>
-id : <input type="text" name="userid" id="userid"/><br/>
-pwd : <input type="text" name="userpwd" id="userpwd"/><br/>
-<input type="button" value="로그인" onclick="doLogin()"/>
-<input type="hidden" name="command" id="command" value="LOGIN"/><br/>
+<%
+String someParam = request.getParameter("some");
+out.println("some 파라메터값 = " + someParam+"<br/>");
+session.setAttribute("some","세션값");
+String someSession = (String)session.getAttribute("some");
+out.println("some 세션값 = " + someSession);
+
+if(login){
+	out.println("현재시간 : " + toDateStr);
+	out.println("<br/>");
+	out.println(userId + "님 환영해요~");
+	out.println("<br/>");
+	out.println("==" + userId + "님 의 정보 ==");
+	out.println("<br/>");
+	out.println("성명 : " + userName);
+	out.println("<br/>");
+	out.println("나이 : " + age);
+	out.println("<br/>");
+	out.println("주소 : " + address);
+	out.println("<br/>"); 
+	out.println("전화번호 : " + hp1 + hp2 + hp3);
+	out.println("<br/>"); 
+	out.println("<input type='button' value='로그아웃' onclick='doLogout()'/>");
+	out.println("<input type='button' value='게시판가기' onclick='doMovePage(\"board\")'/>");
+}else{
+%>
+<form action="<%=rootPath%>/user/login_ok.jsp">
+ID : <input type="text" name="id"/><br/>
+PWD : <input type="text" name="pwd"/><br/>
+<input type="submit" value=" 로그인 "/>
+</form>
+<%
+}
+%>
 </body>
 </html>
