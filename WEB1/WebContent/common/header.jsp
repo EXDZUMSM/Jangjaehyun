@@ -35,15 +35,18 @@ if(userId!=null){
 String rootPath = request.getContextPath();
 Date toDate = new Date();
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-String toDateStr = sdf.format(toDate);
-String init = request.getParameter("Init");
+String toDateStr = sdf.format(toDate); 
+String init = request.getParameter("init");
 String defaultUrl = "";
 if(init==null && !login){
-	defaultUrl = rootPath + "/user/login.jsp?Init=1";
+	defaultUrl = rootPath + "/user/login.jsp?init=2";
 	response.sendRedirect(defaultUrl);
 }
 %>
 <script src="<%=rootPath%>/js/jquery-3.2.1.js"></script>
+<script src="<%=rootPath%>/ui/btsp3.7.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.7.7/css/bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.7.7/css/bootstrap.min.css"/>
 <script>
 var rootPath = "<%=rootPath%>";
 

@@ -8,9 +8,13 @@
 var setObj;
 var loopCnt = 0;
 function doLogout(){
-	location.href=rootPath + "/user/login_ok.jsp";
+	location.href=rootPath + "/user/logout_user.jsp";
 }
 </script>
+<link rel="stylesheet" href="<%=rootPath%>/ui/signin.css"/>
+<div class = "container">
+<div class = "starter-template">
+<jsp:include page="/common/top.jsp" flush = "false"></jsp:include>
 <body>
 <%
 if(login){
@@ -32,13 +36,30 @@ if(login){
 	out.println("<input type='button' value='게시판가기' onclick='doMovePage(\"board\")'/>");
 }else{
 %>
-<form action="/user/login_ok.jsp">
-ID : <input type="text" name="id"/><br/>
-PWD : <input type="text" name="pwd"/><br/>
-<input type="submit" value="로그인!!"/>
-</form>
+
+    <div class="container">
+
+      <form class="form-signin" action="/user/login_ok.jsp">
+        <h2 class="form-signin-header"> 로그인하세요. </h2>
+    
+        <input type="text" id="id" name="id" class="form-control" placeholder="ID" required autofocus>
+       
+        <input type="password" id="pwd" name="pwd" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember-me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"> 접속
+        </button>
+      </form>
+
+    </div> <!-- /container -->
+
 <%
 }
 %>
+</div>
+</div>
 </body>
 </html>
