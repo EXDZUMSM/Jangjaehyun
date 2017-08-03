@@ -12,7 +12,7 @@ sql += " where binum=? and bipwd=?";
 
 Connection con = null;
 PreparedStatement ps = null;
-String result = " 삭제가 되지 않았습니다. ";
+String result = "삭제 안된거 같은디?";
 int resultNum =0;
 try{
 	con = DBConn2.getCon();
@@ -21,7 +21,7 @@ try{
 	ps.setString(2, biPwd);
 	resultNum = ps.executeUpdate();
 	if(resultNum==1){
-		result = " 삭제 완료 ";
+		result = "삭제 됬구먼!!!";
 		con.commit();
 	}
 }catch(Exception e){
