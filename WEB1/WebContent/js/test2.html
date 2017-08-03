@@ -12,10 +12,11 @@ function searchFather(elementObj){
 
 	for (var i = 0; i < maxNum; i++) {
 		var eObj = fObj.elements[i];
-		if (i % 2 == 1 && i != maxNum - 1) {
+		if(eObj.type=="button") continue;
+		if (i % 2 == 1) {
 			var checkNum = new Number(eObj.value);
 			try{
-				if (isNaN(checkNum)) {
+				if (isNan(checkNum)) {
 					alert("숫자라고!!!!!!!!!");
 					eObj.value = "";
 					eObj.focus();
@@ -29,14 +30,14 @@ function searchFather(elementObj){
 }
 </script>
 <body>
-<form onsubmit="checkForm(this)" action="test2.html">
+<form onsubmit="checkForm(this)" action="test2.html" method="post">
 <input type="text"/><br/>
 <input type="text"/><br/>
 <input type="text"/><br/>
+<input type="button" value="전송" onclick="searchFather(this)"/><br/>
 <input type="text"/><br/>
 <input type="text"/><br/>
 <input type="text"/><br/>
-<input type="button" value="전송" onclick="searchFather(this)"/>
 </form>
 </body>
 </html>

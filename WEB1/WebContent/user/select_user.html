@@ -16,7 +16,7 @@ function doUpdate(userNum){
 	au.send();
 }
 function doDelete(userNum){
-	var isDelete = confirm(userNum + "을 삭제하시겠습니까?");
+	var isDelete = confirm(userNum + "을 삭제할라고요~?");
 	if(isDelete){
 		var command = "DELETE";
 		var params = "?usernum=" + userNum + "&command=" + command;
@@ -94,7 +94,7 @@ function doSelect(){
 	   				tableStr += "</tr>";
 	   			}
 	   			if(rows.length==1){
-	   				tableStr += "<tr><td colspan='3'>검색 내역이 없습니다.</td></tr>";
+	   				tableStr += "<tr><td colspan='3'>니가 검색한거 없어 임마</td></tr>";
 	   			}
 	   			tableStr+="</table>";
 	   			document.getElementById("bd_div").innerHTML = tableStr;

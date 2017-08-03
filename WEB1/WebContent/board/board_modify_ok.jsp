@@ -19,7 +19,7 @@ sql += "  where binum=?";
 
 Connection con = null;
 PreparedStatement ps = null;
-String result = " 다시 수정하세요. ";
+String result = "수정 안된거 같다야~?";
 int resultNum =0;
 try{
 	con = DBConn2.getCon();

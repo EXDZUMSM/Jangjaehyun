@@ -13,18 +13,18 @@ function checkValue(){
 	var num2 = parseInt(num2Obj.value);
 
 	if(num1Obj.value.trim()=="" || isNaN(num1)){
-		alert("값을 다시 입력하세요.");
+		alert("값 제대로 입력안할래!!?");
 		num1Obj.focus();
 		return false;
 	}
 	if(num2Obj.vaalue.trim()==""|| isNaN(num2)){
-		alert("값을 다시 입력하세요.");
+		alert("값 제대로 입력안할래!!?");
 		num2Obj.focus();
 		return false;
 	}
 	var opObj = document.getElementById("op");
 	if(opObj.value.trim()==""){
-		alert("값을 다시 입력하세요.");
+		alert("값 제대로 입력안할래!!?");
 		opObj.focus();
 		return false;
 	}
@@ -38,6 +38,7 @@ function checkValue(){
 <td>숫자1</td>
 <td>연산자1</td>
 <td>숫자2</td>
+<td>결과값</td>
 </tr>
 <tr>
 <td><input type="text" name="num1" id="num1"/></td>
@@ -49,9 +50,10 @@ function checkValue(){
 	<option value="*">multiple</option>
 </select></td>
 <td><input type="text" name="num2" id="num2"/></td>
+<td><div id="r_div"></div></td>
 </tr>
-<tr>
-<td colspan="3"><input type="submit" value="계산하기"/></td>
+<tr align="center">
+<td colspan="4"><input type="submit" value="계산해!!"/></td>
 </tr>
 </table>
 </form>

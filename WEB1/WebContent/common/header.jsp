@@ -42,20 +42,27 @@ if(init==null && !login){
 	defaultUrl = rootPath + "/user/login.jsp?init=2";
 	response.sendRedirect(defaultUrl);
 }
-
+String nowUrl = request.getRequestURI();
 String loginStr = "로그인";
 if(login){
 	loginStr = "로그아웃";
 }
+String version = "1.2";
 %>
-<script src="<%=rootPath%>/js/jquery-3.2.1.js"></script>
-<script src="<%=rootPath%>/ui/btsp3.7.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.7.7/css/bootstrap-theme.min.css"/>
-<link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.7.7/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="<%=rootPath%>/ui/common.css"/>
+<script src="<%=rootPath%>/js/jquery-3.2.1.js?version=<%=version%>"></script>
+<script src="<%=rootPath%>/ui/btsp3.7.7/js/bootstrap.min.js?version=<%=version%>"></script>
+<script src="<%=rootPath%>/ui/btsp3.7.7/js/bootstrap-table.js?version=<%=version%>"></script>
+<link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.7.7/css/bootstrap-theme.min.css?version=<%=version%>"/>
+<link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.7.7/css/bootstrap.min.css?version=<%=version%>"/>
+<link rel="stylesheet" href="<%=rootPath%>/ui/btsp3.7.7/css/bootstrap-table.css?version=<%=version%>"/>
+<link rel="stylesheet" href="<%=rootPath%>/ui/common.css?version=<%=version%>"/>
 <script>
-var rootPath = "<%=rootPath%>";
 
+var rootPath = "<%=rootPath%>";
+$(document).ready(function(){
+	var nowUrl = "<%=nowUrl%>";
+	var obj = $("a[href='" + nowUrl + "']").parent().attr("class","active");
+})
 function doMovePage(pageId){
 	var url = "<%=rootPath%>";
 	if(pageId=="board"){
@@ -78,7 +85,7 @@ function doMovePage(pageId){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<%=rootPath%>">HOME</a>
+          <a class="navbar-brand" href="<%=rootPath%>/main.jsp">HOME</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">

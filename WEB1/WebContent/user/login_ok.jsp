@@ -3,22 +3,21 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="com.test.common.DBConn2" %>
 <%@ page import="com.test.dto.UserInfo" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page import="org.json.simple.JSONObject" %>
+<%@ page import="java.util.*" %>
+<%@ page import="com.google.gson.*" %>
+<%@ page import="java.io.*" %>
+
 <%
-String id = request.getParameter("id");
-String pwd = request.getParameter("pwd");
+String id = null;
+String pwd = null;
+UserInfo ui = null;
+Gson g = new Gson();
+ui = g.fromJson(request.getReader(), UserInfo.class);
 
 String result = "";
-if(id!=null && pwd!=null){
-	UserInfo ui = new UserInfo();
-	ui.setUserId(id);
-	ui.setUserPwd(pwd);
+String login = "false";
+if(ui!=null){
 	
 	Connection con = null;
 	PreparedStatement ps = null;
@@ -38,6 +37,7 @@ if(id!=null && pwd!=null){
 			String hp3 = rs.getString("hp3");
 			if(userPwd.equals(ui.getUserPwd())){
 				result =  "로그인 성공";
+				login = "ok";
 				session.setAttribute("userid",ui.getUserId());
 				session.setAttribute("username",userName);
 				session.setAttribute("age",age);
@@ -46,27 +46,32 @@ if(id!=null && pwd!=null){
 				session.setAttribute("hp2",hp2);
 				session.setAttribute("hp3",hp3);
 			}else{
-				result =  " 비밀번호가 틀렸습니다. 다시 입력하세요. ";
+				result =  "비밀번호 틀렸어 임마!";
 			}
 		}
 	}catch(Exception e){
 		System.out.println(e);
 	}finally{
+		if(ps!=null){
+			ps.close();
+			ps = null;
+		}
 		DBConn2.closeCon();
 	}
+	
 	if(result.equals("")){
-		result =  " 아이디가 존재하지 않습니다. ";
+		result =  "그런 아이디 없다잖아!!";
 	}
-	out.println(result);
 }else{
 	// 세션 초기화
+	result = "로그아웃 되셨습니다.";
 	session.invalidate();
 }
+HashMap hm = new HashMap();
+hm.put("login",login);
+hm.put("msg",result);
+
+String json = g.toJson(hm);
+System.out.println(json);
+out.write(json);
 %>
-<script>
-var result = "<%=result%>";
-alert(result);
-location.href="/user/login.jsp";
-</script>
-</body>
-</html>

@@ -2,20 +2,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>타이틀</title>
 </head>
+<body id="bd1">
+<input type="button" value="생성!" onclick="fclick()"/>
+</body>
 <script>
-function click(){
-var inputStr = "<input type= 'text' id='ip1' name='ip'/>";
 var bodyObj = document.getElementById("bd1");
-bodyObj.innerHTML=inputStr;
+var initBodyStrs = new Array();
+var fclickCnt = 0;
+function fclick(){
+	var inputStr = "<input type='text' id='ip1' name='ip' onclick='initBody()'/>";
+	initBodyStrs[initBodyStrs.length] = bodyObj.innerHTML;
+	bodyObj.innerHTML += inputStr;
+	fclickCnt++;
 }
+
 function initBody(){
-	var bodyObj = document.getElementById("bd1");
+	bodyObj.innerHTML = initBodyStrs[--fclickCnt];
 }
 </script>
-
-<body id="bd1">
-<input type="button" value="생성" onclick="fclick()"/>
-</body>
 </html>

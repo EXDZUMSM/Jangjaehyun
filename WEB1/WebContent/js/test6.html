@@ -7,12 +7,11 @@
 <script>
 function getAllValue(){
 	var elObjs = document.getElementsByName("txt");
-	
 	var result = "";
-	for(var i = 0; i<elObjs.length; i++){
+	for(var i=0;i<elObjs.length;i++){
 		result += elObjs[i].value;
 	}
-	alert(result;)
+	alert(result);
 }
 </script>
 <body>
@@ -20,8 +19,7 @@ function getAllValue(){
 <input type="text" id="blur1" name="txt"/>
 <input type="text" id="blur2" name="txt"/>
 <input type="text" id="blur3" name="txt"/>
-<input type="button" value="모두 갖고오기" onclick="getAllValue()"/>
+<input type="button" value="모든값 가져오기" onclick="getAllValue()"/>
 </form>
-</script>
 </body>
 </html>
