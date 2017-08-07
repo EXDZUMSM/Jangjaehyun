@@ -46,7 +46,7 @@ if(ui!=null){
 				session.setAttribute("hp2",hp2);
 				session.setAttribute("hp3",hp3);
 			}else{
-				result =  "비밀번호 틀렸어 임마!";
+				result =  " 비밀번호를 다시 입력하세요. ";
 			}
 		}
 	}catch(Exception e){
@@ -60,7 +60,7 @@ if(ui!=null){
 	}
 	
 	if(result.equals("")){
-		result =  "그런 아이디 없다잖아!!";
+		result =  " 아이디가 존재하지 않습니다. ";
 	}
 }else{
 	// 세션 초기화
